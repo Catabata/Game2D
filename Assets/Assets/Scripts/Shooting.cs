@@ -3,23 +3,29 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
 
-    float speed = 10;
-    void Start()
-    {
-        Rigidbody body = GetComponent<Rigidbody>();
-    }
-    Vector2 moveDirecion;
 
-    Vector3 mousePosition;
-    
+
     // Update is called once per frame      
     void Update()                           
-    {                                       
-        mousePosition = Input.mousePosition;
+    {
+
+
     }
     private void FixedUpdate()
     {
-        Debug.DrawLine(transform.position, mousePosition, Color.red);
+        LayerMask main = LayerMask.GetMask("Default");
+        Vector3 mousepos = Input.mousePosition;
+        Vector2 mouseDir = (Vector2)(mousepos - transform.position).normalized;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDir, main);
+        Debug.DrawLine(transform.position, mouseDir, Color.red, 10);
+        if (hit)
+        {
+            if (hit.transform.name.Equals("Square"))
+            {
+                Debug.Log("Hit square cheers");
+            }
+        }
+
     }
 
 }
