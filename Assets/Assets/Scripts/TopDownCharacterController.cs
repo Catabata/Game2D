@@ -8,7 +8,7 @@ public class TopDownCharacterController : MonoBehaviour
 
     //The inputs that we need to retrieve from the input system.
     private InputAction m_moveAction;
-    private InputAction m_attackAction;
+    public InputAction m_attackAction;
 
     //The components that we need to edit to make the player move smoothly.
     private Animator m_animator;
@@ -39,7 +39,6 @@ public class TopDownCharacterController : MonoBehaviour
 
     void Start()
     {
-
     }
 
     private void FixedUpdate()
@@ -49,6 +48,7 @@ public class TopDownCharacterController : MonoBehaviour
 
         //apply the movement to the character using the clamped speed value.
         m_rigidbody.linearVelocity = m_playerDirection * (speed * Time.fixedDeltaTime);
+
     }
 
     /// <summary>
@@ -70,7 +70,6 @@ public class TopDownCharacterController : MonoBehaviour
         // If there is movement, set the directional values to ensure the character is facing the way they are moving.
         if (m_playerDirection.magnitude > 0)
         {
-
             m_animator.SetFloat("Horizontal", m_playerDirection.x);
             m_animator.SetFloat("Vertical", m_playerDirection.y);
         }

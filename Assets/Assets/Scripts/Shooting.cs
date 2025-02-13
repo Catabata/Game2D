@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-
-
+    public GameObject prefab;
+    private void Start()
+    {
+        
+    }
 
     // Update is called once per frame      
     void Update()                           
@@ -17,13 +20,10 @@ public class Shooting : MonoBehaviour
         Vector3 mousepos = Input.mousePosition;
         Vector2 mouseDir = (Vector2)(mousepos - transform.position).normalized;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDir, main);
-        Debug.DrawLine(transform.position, mouseDir, Color.red, 10);
-        if (hit)
+        if (Input.GetKeyDown(mouse 1))
         {
-            if (hit.transform.name.Equals("Square"))
-            {
-                Debug.Log("Hit square cheers");
-            }
+
+            print("HELLLLLLPPP");
         }
 
     }
