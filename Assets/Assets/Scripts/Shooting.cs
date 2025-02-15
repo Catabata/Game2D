@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    public GameObject prefab;
+    Rigidbody rb;
+    float speed;
     private void Start()
     {
-        
+        speed = 10f;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame      
@@ -16,7 +18,7 @@ public class Shooting : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
+        rb.AddForce(transform.forward * speed);
         LayerMask main = LayerMask.GetMask("Default");
         Vector3 mousepos = Input.mousePosition;
         Vector2 mouseDir = (Vector2)(mousepos - transform.position).normalized;

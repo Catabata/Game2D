@@ -28,7 +28,7 @@ public class TopDownCharacterController : MonoBehaviour
 
     int mana_costsp1 = 20;
     int damage;
-    int mana = 500;
+    int mana = 100;
     public GameObject fireball;
     bool CanFire = true;
 
@@ -46,11 +46,11 @@ public class TopDownCharacterController : MonoBehaviour
     void Spellf()
     {
         damage = 10;
-        mana -= mana_costsp1;
+        
         if (mana >= mana_costsp1)
         {
+            mana -= mana_costsp1;
             Instantiate(fireball, transform.position, transform.rotation);
-
 
         }
         else
@@ -70,6 +70,8 @@ public class TopDownCharacterController : MonoBehaviour
         //clamp the speed to the maximum speed for if the speed has been changed in code.
         float speed = m_playerSpeed > m_playerMaxSpeed ? m_playerMaxSpeed : m_playerSpeed;
 
+
+
         //apply the movement to the character using the clamped speed value.
         m_rigidbody.linearVelocity = m_playerDirection * (speed * Time.fixedDeltaTime);
 
@@ -86,7 +88,7 @@ public class TopDownCharacterController : MonoBehaviour
         Vector2 mouseDir = (Vector2)(mousepos - transform.position).normalized;
         // store any movement inputs into m_playerDirection - this will be used in FixedUpdate to move the player.
         m_playerDirection = m_moveAction.ReadValue<Vector2>();
-
+        
         // ~~ handle animator ~~
         // Update the animator speed to ensure that we revert to idle if the player doesn't move.
         m_animator.SetFloat("Speed", m_playerDirection.magnitude);
