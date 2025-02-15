@@ -27,6 +27,12 @@ public class TopDownCharacterController : MonoBehaviour
     #endregion+
 
 
+    public GameObject fireball;
+    void Spell() 
+    {
+
+    }
+
     private void Awake()
     {
 
@@ -34,11 +40,12 @@ public class TopDownCharacterController : MonoBehaviour
         m_attackAction = InputSystem.actions.FindAction("Attack");
         m_animator = GetComponent<Animator>();
         m_rigidbody = GetComponent<Rigidbody2D>();
-
+        
     }
 
     void Start()
     {
+
     }
 
     private void FixedUpdate()
@@ -78,6 +85,11 @@ public class TopDownCharacterController : MonoBehaviour
         if (m_attackAction.IsPressed())
         {
 
+            Instantiate(fireball, transform.position, transform.rotation);
+        
+
+                print("HELLLLLLPPP");
+           
         }
 
     }
