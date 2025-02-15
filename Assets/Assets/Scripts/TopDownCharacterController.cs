@@ -26,12 +26,13 @@ public class TopDownCharacterController : MonoBehaviour
 
     #endregion+
 
-
+    int mana_costsp1 = 20;
+    int damage;
+    int mana = 500;
     public GameObject fireball;
-    void Spell() 
-    {
+    bool CanFire = true;
 
-    }
+
 
     private void Awake()
     {
@@ -41,6 +42,22 @@ public class TopDownCharacterController : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_rigidbody = GetComponent<Rigidbody2D>();
         
+    }
+    void Spellf()
+    {
+        damage = 10;
+        mana -= mana_costsp1;
+        if (mana >= mana_costsp1)
+        {
+            Instantiate(fireball, transform.position, transform.rotation);
+
+
+        }
+        else
+        {
+            Debug.Log("Spell failed");
+        }
+
     }
 
     void Start()
@@ -80,17 +97,19 @@ public class TopDownCharacterController : MonoBehaviour
             m_animator.SetFloat("Horizontal", m_playerDirection.x);
             m_animator.SetFloat("Vertical", m_playerDirection.y);
         }
-        
+
         // check if an attack has been triggered.
-        if (m_attackAction.IsPressed())
+        if (m_attackAction.IsPressed() && CanFire)
         {
-
-            Instantiate(fireball, transform.position, transform.rotation);
-        
-
-                print("HELLLLLLPPP");
-           
+            Spellf();
+            CanFire = false;
         }
+
+        if (!m_attackAction.IsPressed())
+        {
+            CanFire = true;
+        }
+
 
     }
 
